@@ -5,87 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>联系我</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft Yahei", sans-serif;
+        /* 简单美化，按钮更大更显眼 */
+        body { display: flex; flex-direction: column; align-items: center; margin-top: 50px; font-family:  Arial, sans-serif; }
+        .btn { 
+            width: 280px; 
+            height: 60px; 
+            line-height: 60px; 
+            text-align: center; 
+            margin: 15px 0; 
+            border: none; 
+            border-radius: 30px; 
+            font-size: 20px; 
+            color: white; 
+            cursor: pointer; 
+            text-decoration: none; 
         }
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #f5f7fa;
-            padding: 20px;
-        }
-        .title {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 40px;
-        }
-        .btn-group {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .contact-btn {
-            width: 160px;
-            height: 60px;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: white;
-        }
-        .call-btn {
-            background-color: #07c160;
-        }
-        .sms-btn {
-            background-color: #1677ff;
-        }
-        .contact-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .tip {
-            margin-top: 30px;
-            color: #666;
-            font-size: 14px;
-        }
+        .call-btn { background-color: #2d8cf0; } /* 蓝色：打电话 */
+        .sms-btn { background-color: #19be6b; } /* 绿色：发短信 */
+        .btn:hover { opacity: 0.9; } /* 点击时轻微变暗 */
     </style>
 </head>
 <body>
-    <div class="title">选择联系方式</div>
-    <div class="btn-group">
-        <!-- 按钮无直接号码属性，通过JS触发，隐藏真实号码 -->
-        <button class="contact-btn call-btn" id="callBtn">拨打电话</button>
-        <button class="contact-btn sms-btn" id="smsBtn">发送短信</button>
-    </div>
-    <div class="tip">点击即可直接联系，安全不泄露隐私</div>
-
-    <script>
-        // ===================== 隐私配置区 =====================
-        // 真实手机号仅写在JS变量中，不直接暴露在HTML属性
-        // 极致安全方案：替换为后端接口请求，不硬编码号码
-        const realPhone = "17681831076"; // 替换为你的真实手机号
-        // ======================================================
-
-        const callBtn = document.getElementById('callBtn');
-        const smsBtn = document.getElementById('smsBtn');
-
-        // 拨打电话：通过JS动态拼接tel协议，不裸露号码
-        callBtn.addEventListener('click', () => {
-            window.location.href = `tel:${realPhone}`;
-        });
-
-        // 发送短信：通过JS动态拼接sms协议
-        smsBtn.addEventListener('click', () => {
-            window.location.href = `sms:${realPhone}`;
-        });
-    </script>
+    <h1>扫码联系我</h1>
+    <!-- 按钮文字改成“拨打电话”，隐藏手机号明文 -->
+    <a href="tel:你的手机号" class="btn call-btn">📞 拨打电话</a>
+    <!-- 按钮文字改成“发送短信”，可自定义短信内容（=后面的文字） -->
+    <a href="sms:你的手机号?body=你好，我想咨询相关事宜" class="btn sms-btn">📩 发送短信</a>
 </body>
 </html>
